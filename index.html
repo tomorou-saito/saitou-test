@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#247965">
+  <meta name="description" content="あつ森の住民417名から、島の住民と欲しい住民を記録。キャンプサイト厳選の性格バランスを見える化する非公式ツール。">
+  <title>しまのてちょう｜あつ森 住民厳選ノート</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="data.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a href="#main" class="skip">本文へ移動</a>
+  <header class="site-header">
+    <a class="brand" href="#"><span class="brand-icon" aria-hidden="true">❧</span><span>しまのてちょう<small>ISLAND NEIGHBOR NOTE</small></span></a>
+    <nav aria-label="メイン"><a href="#directory">住民をさがす</a><a href="#camp">キャンプのヒント</a><button id="help-button" class="quiet">使い方・出典 ↗</button></nav>
+  </header>
+  <main id="main">
+    <section class="hero">
+      <div><p class="eyebrow">あつまれ どうぶつの森 ／ 住民厳選ノート</p><h1>つぎに出会う、<br>あの子のこと。</h1><p class="hero-copy">島の仲間も、いつか迎えたい子も。<br>あなたの島づくりを、ひとつのてちょうに。</p><a class="primary hero-link" href="#directory">住民をさがす <span>↓</span></a></div>
+      <div class="island-art" aria-hidden="true"><span class="sun"></span><span class="cloud cloud-one"></span><span class="cloud cloud-two"></span><div class="island"><div class="hill"></div><div class="tree tree-one">♠</div><div class="tree tree-two">♠</div><div class="house"><i></i><b></b></div><div class="tent"></div><span class="flower">✿</span><span class="flower flower-two">✿</span><span class="path"></span></div><span class="art-label">A LITTLE ISLAND, A LOT OF FRIENDS.</span></div>
+      <div class="hero-footer"><span>☘ <strong id="total-count">417</strong>名の住民を収録</span><span>✓ このブラウザに自動保存</span><span>Ver.3.0 追加住民対応</span></div>
+    </section>
+    <section class="notebook" aria-label="あなたの住民リスト">
+      <div class="island-panel"><div class="section-heading"><div><p class="eyebrow">MY ISLAND</p><h2>島の仲間 <span id="island-count" class="count">0 / 10</span></h2></div><span class="small-label">どうぶつの住民のみ</span></div><div id="island-slots" class="island-slots"></div></div>
+      <div class="wishlist-panel"><div class="section-heading"><div><p class="eyebrow">WISH LIST</p><h2>いつか迎えたい子 <span id="wish-count" class="count">0</span></h2></div><span class="heart-mark">♡</span></div><div id="wish-preview"></div><button id="show-wishes" class="text-button">欲しい住民を一覧で見る →</button></div>
+    </section>
+    <section id="camp" class="camp-panel">
+      <div class="camp-intro"><p class="eyebrow">CAMPSITE MEMO</p><h2>性格のバランスが、<br>出会いのヒント。</h2><p>島にいない性格の住民は、<br>自然訪問で選ばれやすいとされています。</p><div id="missing-summary" class="missing-summary"></div><button id="camp-details" class="text-button">抽選のしくみを読む →</button></div>
+      <div class="camp-chart"><div class="chart-heading"><h3>いまの島の性格</h3><span>● いる　<span class="missing-dot">●</span> いない</span></div><div id="personality-chart"></div><p class="chart-note">棒は島の人数です。訪問確率を表すものではありません。</p></div>
+    </section>
+    <section id="directory" class="directory">
+      <div class="directory-heading"><div><p class="eyebrow">MEET YOUR NEIGHBORS</p><h2>お気に入りの子を、見つけよう。</h2></div><span class="small-label">2026.11.05 データ確認</span></div>
+      <div class="filters"><label class="search-box"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="住民の名前で検索（ひらがなもOK）" aria-label="住民の名前で検索"></label><label><span>種族</span><select id="species"><option value="">すべての種族</option></select></label><label><span>性格</span><select id="personality"><option value="">すべての性格</option></select></label><button id="clear-filters" class="quiet">リセット</button></div>
+      <div class="results-toolbar"><div class="tabs" role="group" aria-label="住民の表示対象"><button class="tab active" data-view="all" aria-pressed="true">すべて</button><button class="tab" data-view="island" aria-pressed="false">島の仲間</button><button class="tab" data-view="wish" aria-pressed="false">欲しい住民</button></div><div class="result-controls"><span id="result-count" role="status"></span><label class="sort-label"><span class="sr-only">並び順</span><select id="sort"><option value="name">名前順</option><option value="species">種族順</option><option value="personality">性格順</option></select></label></div></div>
+      <div id="resident-grid" class="resident-grid"></div><div id="pagination" class="pagination"></div>
+    </section>
+    <section class="backup-panel"><div><h3>大切な記録を、手元にも。</h3><p>ブラウザのデータを消す前や、別の端末で使いたいときに。</p></div><div><button id="export" class="outline">記録を書き出す ↓</button><button id="import" class="quiet">記録を読み込む ↑</button><input id="import-file" type="file" accept="application/json,.json" hidden></div></section>
+  </main>
+  <footer><a class="footer-brand" href="#">❧ しまのてちょう</a><p>『あつまれ どうぶつの森』非公式ファンツール。任天堂とは関係ありません。<br>ゲーム・キャラクター画像の権利は任天堂等の権利者に帰属します。</p><button id="footer-sources" class="text-button">使い方・データと出典</button></footer>
+  <dialog id="info-dialog"><div class="dialog-header"><h2 id="dialog-title"></h2><button id="close-dialog" aria-label="閉じる">×</button></div><div id="dialog-content"></div></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
